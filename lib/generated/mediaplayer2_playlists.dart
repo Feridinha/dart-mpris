@@ -1,11 +1,12 @@
 // This file was generated using the following command and may be overwritten.
 // dart-dbus generate-remote-object ./lib/generated/org.mpris.MediaPlayer2.Playlists.xml
 
+import 'dart:io';
 import 'package:dbus/dbus.dart';
 
 /// Signal data for org.mpris.MediaPlayer2.Playlists.PlaylistChanged.
 class MediaPlayer2PlaylistsPlaylistChanged extends DBusSignal {
-  DBusStruct get Playlist => values[0].asStruct();
+  List<DBusValue> get Playlist => values[0].asStruct();
 
   MediaPlayer2PlaylistsPlaylistChanged(DBusSignal signal)
       : super(
@@ -50,7 +51,7 @@ class MediaPlayer2Playlists extends DBusRemoteObject {
   }
 
   /// Gets org.mpris.MediaPlayer2.Playlists.ActivePlaylist
-  Future<DBusStruct> getActivePlaylist() async {
+  Future<List<DBusValue>> getActivePlaylist() async {
     var value = await getProperty(
         'org.mpris.MediaPlayer2.Playlists', 'ActivePlaylist',
         signature: DBusSignature('(b(oss))'));
@@ -58,18 +59,18 @@ class MediaPlayer2Playlists extends DBusRemoteObject {
   }
 
   /// Invokes org.mpris.MediaPlayer2.Playlists.ActivatePlaylist()
-  Future<void> callActivatePlaylist(String PlaylistId,
+  Future<void> callActivatePlaylist(DBusObjectPath PlaylistId,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
-    await callMethod('org.mpris.MediaPlayer2.Playlists', 'ActivatePlaylist',
-        [DBusObjectPath(PlaylistId)],
+    await callMethod(
+        'org.mpris.MediaPlayer2.Playlists', 'ActivatePlaylist', [PlaylistId],
         replySignature: DBusSignature(''),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);
   }
 
   /// Invokes org.mpris.MediaPlayer2.Playlists.GetPlaylists()
-  Future<List<DBusStruct>> callGetPlaylists(
+  Future<List<List<DBusValue>>> callGetPlaylists(
       int Index, int MaxCount, String Order, bool ReverseOrder,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {

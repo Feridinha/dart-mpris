@@ -1,12 +1,13 @@
 // This file was generated using the following command and may be overwritten.
 // dart-dbus generate-remote-object ./lib/generated/org.mpris.MediaPlayer2.TrackList.xml
 
+import 'dart:io';
 import 'package:dbus/dbus.dart';
 
 /// Signal data for org.mpris.MediaPlayer2.TrackList.TrackListReplaced.
 class MediaPlayer2TrackListTrackListReplaced extends DBusSignal {
-  List<String> get Tracks => values[0].asObjectPathArray().toList();
-  String get CurrentTrack => values[1].asObjectPath();
+  List<DBusObjectPath> get Tracks => values[0].asObjectPathArray().toList();
+  DBusObjectPath get CurrentTrack => values[1].asObjectPath();
 
   MediaPlayer2TrackListTrackListReplaced(DBusSignal signal)
       : super(
@@ -20,7 +21,7 @@ class MediaPlayer2TrackListTrackListReplaced extends DBusSignal {
 /// Signal data for org.mpris.MediaPlayer2.TrackList.TrackAdded.
 class MediaPlayer2TrackListTrackAdded extends DBusSignal {
   Map<String, DBusValue> get Metadata => values[0].asStringVariantDict();
-  String get AfterTrack => values[1].asObjectPath();
+  DBusObjectPath get AfterTrack => values[1].asObjectPath();
 
   MediaPlayer2TrackListTrackAdded(DBusSignal signal)
       : super(
@@ -33,7 +34,7 @@ class MediaPlayer2TrackListTrackAdded extends DBusSignal {
 
 /// Signal data for org.mpris.MediaPlayer2.TrackList.TrackRemoved.
 class MediaPlayer2TrackListTrackRemoved extends DBusSignal {
-  String get TrackId => values[0].asObjectPath();
+  DBusObjectPath get TrackId => values[0].asObjectPath();
 
   MediaPlayer2TrackListTrackRemoved(DBusSignal signal)
       : super(
@@ -46,7 +47,7 @@ class MediaPlayer2TrackListTrackRemoved extends DBusSignal {
 
 /// Signal data for org.mpris.MediaPlayer2.TrackList.TrackMetadataChanged.
 class MediaPlayer2TrackListTrackMetadataChanged extends DBusSignal {
-  String get TrackId => values[0].asObjectPath();
+  DBusObjectPath get TrackId => values[0].asObjectPath();
   Map<String, DBusValue> get Metadata => values[1].asStringVariantDict();
 
   MediaPlayer2TrackListTrackMetadataChanged(DBusSignal signal)
@@ -110,7 +111,7 @@ class MediaPlayer2TrackList extends DBusRemoteObject {
   }
 
   /// Gets org.mpris.MediaPlayer2.TrackList.Tracks
-  Future<List<String>> getTracks() async {
+  Future<List<DBusObjectPath>> getTracks() async {
     var value = await getProperty('org.mpris.MediaPlayer2.TrackList', 'Tracks',
         signature: DBusSignature('ao'));
     return value.asObjectPathArray().toList();
@@ -126,7 +127,7 @@ class MediaPlayer2TrackList extends DBusRemoteObject {
 
   /// Invokes org.mpris.MediaPlayer2.TrackList.GetTracksMetadata()
   Future<List<Map<String, DBusValue>>> callGetTracksMetadata(
-      List<String> TrackIds,
+      List<DBusObjectPath> TrackIds,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
     var result = await callMethod('org.mpris.MediaPlayer2.TrackList',
@@ -141,39 +142,33 @@ class MediaPlayer2TrackList extends DBusRemoteObject {
   }
 
   /// Invokes org.mpris.MediaPlayer2.TrackList.AddTrack()
-  Future<void> callAddTrack(String Uri, String AfterTrack, bool SetAsCurrent,
+  Future<void> callAddTrack(
+      String Uri, DBusObjectPath AfterTrack, bool SetAsCurrent,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
-    await callMethod(
-        'org.mpris.MediaPlayer2.TrackList',
-        'AddTrack',
-        [
-          DBusString(Uri),
-          DBusObjectPath(AfterTrack),
-          DBusBoolean(SetAsCurrent)
-        ],
+    await callMethod('org.mpris.MediaPlayer2.TrackList', 'AddTrack',
+        [DBusString(Uri), AfterTrack, DBusBoolean(SetAsCurrent)],
         replySignature: DBusSignature(''),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);
   }
 
   /// Invokes org.mpris.MediaPlayer2.TrackList.RemoveTrack()
-  Future<void> callRemoveTrack(String TrackId,
+  Future<void> callRemoveTrack(DBusObjectPath TrackId,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
-    await callMethod('org.mpris.MediaPlayer2.TrackList', 'RemoveTrack',
-        [DBusObjectPath(TrackId)],
+    await callMethod(
+        'org.mpris.MediaPlayer2.TrackList', 'RemoveTrack', [TrackId],
         replySignature: DBusSignature(''),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);
   }
 
   /// Invokes org.mpris.MediaPlayer2.TrackList.GoTo()
-  Future<void> callGoTo(String TrackId,
+  Future<void> callGoTo(DBusObjectPath TrackId,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
-    await callMethod(
-        'org.mpris.MediaPlayer2.TrackList', 'GoTo', [DBusObjectPath(TrackId)],
+    await callMethod('org.mpris.MediaPlayer2.TrackList', 'GoTo', [TrackId],
         replySignature: DBusSignature(''),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);

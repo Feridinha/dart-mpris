@@ -201,7 +201,7 @@ class MPRISPlayer {
 
   /// Sets the current track position
   Future setPosition(String track, Duration position) =>
-      _mediaPlayer.callSetPosition(track, position.inMicroseconds);
+      _mediaPlayer.callSetPosition(DBusObjectPath(track), position.inMicroseconds);
 
   /// Uri of the track to load (This is used to tell the media player which track to play)
   Future openUri(String uri) => _mediaPlayer.callOpenUri(uri);

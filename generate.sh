@@ -13,4 +13,4 @@ dart run dbus:dart_dbus generate-remote-object --class-name=MediaPlayer2 ./lib/g
 dart run dbus:dart_dbus generate-remote-object --class-name=MediaPlayer2Player ./lib/generated/org.mpris.MediaPlayer2.Player.xml -o ./lib/generated/mediaplayer2_player.dart
 dart run dbus:dart_dbus generate-remote-object --class-name=MediaPlayer2Playlists ./lib/generated/org.mpris.MediaPlayer2.Playlists.xml -o ./lib/generated/mediaplayer2_playlists.dart
 dart run dbus:dart_dbus generate-remote-object --class-name=MediaPlayer2TrackList ./lib/generated/org.mpris.MediaPlayer2.TrackList.xml -o ./lib/generated/mediaplayer2_track_list.dart
-dart format --fix ./lib/generated
+dart format ./lib/generated

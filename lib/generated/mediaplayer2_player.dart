@@ -1,6 +1,7 @@
 // This file was generated using the following command and may be overwritten.
 // dart-dbus generate-remote-object ./lib/generated/org.mpris.MediaPlayer2.Player.xml
 
+import 'dart:io';
 import 'package:dbus/dbus.dart';
 
 /// Signal data for org.mpris.MediaPlayer2.Player.Seeked.
@@ -238,11 +239,11 @@ class MediaPlayer2Player extends DBusRemoteObject {
   }
 
   /// Invokes org.mpris.MediaPlayer2.Player.SetPosition()
-  Future<void> callSetPosition(String TrackId, int Position,
+  Future<void> callSetPosition(DBusObjectPath TrackId, int Position,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
     await callMethod('org.mpris.MediaPlayer2.Player', 'SetPosition',
-        [DBusObjectPath(TrackId), DBusInt64(Position)],
+        [TrackId, DBusInt64(Position)],
         replySignature: DBusSignature(''),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);

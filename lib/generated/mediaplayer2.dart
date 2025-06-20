@@ -1,6 +1,7 @@
 // This file was generated using the following command and may be overwritten.
 // dart-dbus generate-remote-object ./lib/generated/org.mpris.MediaPlayer2.xml
 
+import 'dart:io';
 import 'package:dbus/dbus.dart';
 
 class MediaPlayer2 extends DBusRemoteObject {
