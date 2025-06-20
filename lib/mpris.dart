@@ -129,6 +129,21 @@ class MPRISPlayer {
   Future<Metadata> getMetadata() async =>
       Metadata.fromMap(await _mediaPlayer.getMetadata());
 
+  /// Get the playback status
+  Future<PlaybackStatus> getPlaybackStatus() async {
+    final status = await _mediaPlayer.getPlaybackStatus();
+    switch (status) {
+      case 'Playing':
+        return PlaybackStatus.playing;
+      case 'Paused':
+        return PlaybackStatus.paused;
+      case 'Stopped':
+        return PlaybackStatus.stopped;
+      default:
+        throw Exception("Unknown playback status '$status'");
+    }
+  }
+
   /// Get the volume level
   Future<double> getVolume() => _mediaPlayer.getVolume();
 
@@ -208,6 +223,17 @@ enum LoopStatus {
 
   /// If the playback loops through a list of tracks
   playlist,
+}
+
+enum PlaybackStatus {
+  /// If the track is playing
+  playing,
+
+  // If the track is paused
+  paused,
+
+  /// If the track was stopped
+  stopped,
 }
 
 // ignore: public_member_api_docs
