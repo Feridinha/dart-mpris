@@ -1,3 +1,7 @@
+# Why this fork exists:
+This is a fork of the pub.dev library 'mpris', I've added some new functions like "getPlaybackStatus" and also fixed errors that occured when trying to read Mpris players from Youtube and other streaming services.
+
+## Original README:
 # mpris
 
 A library to interface [D-Bus MPRIS](https://specifications.freedesktop.org/mpris-spec/latest/) media players on linux systems.
